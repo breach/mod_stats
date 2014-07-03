@@ -1,6 +1,6 @@
 {
   "name": "mod_stats",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "./index.js",
   "dependencies": {
     "breach_module": "0.3.x",
