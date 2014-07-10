@@ -22,19 +22,21 @@ var bootstrap = function(http_srv) {
     stats: require('./lib/stats.js').stats({})
   };
 
-  breach.register('core', 'inst:.*');
-
-  breach.expose('init', function(src, args, cb_) {
-    async.parallel([
-      common._.stats.init,
-    ], cb_);
-  });
-
-  breach.expose('kill', function(args, cb_) {
-    async.parallel([
-      common._.stats.kill,
-    ], function(err) {
-      common.exit(0);
+  breach.init(function() {
+    breach.register('core', 'inst:.*');
+  
+    breach.expose('init', function(src, args, cb_) {
+      async.parallel([
+        common._.stats.init,
+      ], cb_);
+    });
+  
+    breach.expose('kill', function(args, cb_) {
+      async.parallel([
+        common._.stats.kill,
+      ], function(err) {
+        common.exit(0);
+      });
     });
   });
 };
